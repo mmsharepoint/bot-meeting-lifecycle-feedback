@@ -1,7 +1,7 @@
 variables:
-    - name: PUBLIC_HOSTNAME
-    value: mmoBotLifecycleFeedback
-    
+- name: PUBLIC_HOSTNAME
+value: mmoBotLifecycleFeedback
+
 trigger:
   - main
 
