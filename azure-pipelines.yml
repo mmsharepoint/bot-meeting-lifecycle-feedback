@@ -1,7 +1,3 @@
-variables:
-- name: PUBLIC_HOSTNAME
-value: mmoBotLifecycleFeedback
-
 trigger:
   - main
 
