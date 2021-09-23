@@ -58,8 +58,16 @@
     "messageTeamMembers"
   ],
   "validDomains": [
-    "{{PUBLIC_HOSTNAME}}"
+    "{{PUBLIC_HOSTNAME}}",
+    "token.botframework.com"
   ],
   "showLoadingIndicator": false,
-  "isFullScreen": false
+  "isFullScreen": false,
+  "webApplicationInfo": {
+    "id": "{{MICROSOFT_APP_ID}}",
+    "resource": "https://RscPermission",
+    "applicationPermissions": [
+      "OnlineMeeting.ReadBasic.Chat"
+    ]
+  }
 }
