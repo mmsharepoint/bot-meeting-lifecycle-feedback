@@ -39,6 +39,12 @@ export default class AdaptiveCardSvc {
         ]
     };
 
+    private static initialTextblock = {
+        type: "TextBlock",
+        text: "How did you like the meeting?",
+        wrap: true
+    };
+
     private static votingActions = [
         {
             type: "Action.Execute",
@@ -87,10 +93,104 @@ export default class AdaptiveCardSvc {
         }
     ];
 
+    private static getResultVotes = (feedback:Feedback) => {
+        return { 
+                type: "ColumnSet",
+                columns: [
+                {
+                    type: "Column",
+                    width: "stretch",
+                    items: [
+                        {
+                            type: "Image",
+                            size: "Medium",
+                            url: `https://${process.env.PUBLIC_HOSTNAME}/assets/1.png`
+                        },
+                        {
+                            type: "TextBlock",
+                            text: feedback.votes1.toString(),
+                            wrap: true,
+                            horizontalAlignment: "Center"
+                        }
+                    ]
+                },
+                {
+                    type: "Column",
+                    width: "stretch",
+                    items: [
+                        {
+                            type: "Image",
+                            size: "Medium",
+                            url: `https://${process.env.PUBLIC_HOSTNAME}/assets/2.png`
+                        },
+                        {
+                            type: "TextBlock",
+                            text: feedback.votes2.toString(),
+                            wrap: true,
+                            horizontalAlignment: "Center"
+                        }
+                    ]
+                },
+                {
+                    type: "Column",
+                    width: "stretch",
+                    items: [
+                        {
+                            type: "Image",
+                            size: "Medium",
+                            url: `https://${process.env.PUBLIC_HOSTNAME}/assets/3.png`
+                        },
+                        {
+                            type: "TextBlock",
+                            text: feedback.votes3.toString(),
+                            wrap: true,
+                            horizontalAlignment: "Center"
+                        }
+                    ]
+                },
+                {
+                    type: "Column",
+                    width: "stretch",
+                    items: [
+                        {
+                            type: "Image",
+                            size: "Medium",
+                            url: `https://${process.env.PUBLIC_HOSTNAME}/assets/4.png`
+                        },
+                        {
+                            type: "TextBlock",
+                            text: feedback.votes4.toString(),
+                            wrap: true,
+                            horizontalAlignment: "Center"
+                        }
+                    ]
+                },
+                {
+                    type: "Column",
+                    width: "stretch",
+                    items: [
+                        {
+                            type: "Image",
+                            size: "Medium",
+                            url: `https://${process.env.PUBLIC_HOSTNAME}/assets/5.png`
+                        },
+                        {
+                            type: "TextBlock",
+                            text: feedback.votes5.toString(),
+                            wrap: true,
+                            horizontalAlignment: "Center"
+                        }
+                    ]
+                }
+            ]
+        }
+    };  
+
     public static getInitialCard(meetingID: string) {
         let initialFeedback = this.initialFeedback;
         initialFeedback.meetingID = meetingID;
         const card: any = this.basicCard;
+        card.body[0] = this.initialTextblock;
         card.body[1].actions = this.votingActions;
         card.body[1].actions[0].data.feedback = initialFeedback;
         card.body[1].actions[1].data.feedback = initialFeedback;
@@ -103,6 +203,7 @@ export default class AdaptiveCardSvc {
 
     public static getCurrentCard(feedback: Feedback) {
         const card: any = this.basicCard;
+        card.body[0] = this.initialTextblock;
         card.body[1].actions = this.votingActions;
         card.body[1].actions[0].data.feedback = feedback;
         card.body[1].actions[1].data.feedback = feedback;
@@ -117,6 +218,7 @@ export default class AdaptiveCardSvc {
     public static getDisabledCard(feedback: Feedback) {
         const card: any = this.basicCard;
         card.body[1].actions = [];
+        card.body[0] = this.getResultVotes(feedback);
         card.refresh.action.data.feedback = feedback;
         return card;
     }
