@@ -44,7 +44,7 @@ export default class AdaptiveCardSvc {
             type: "Action.Execute",
             title: " ",
             verb: "vote_1",
-            iconUrl: "https://mmodocumentapproval.azurewebsites.net/assets/icon.png",
+            iconUrl: `https://${process.env.PUBLIC_HOSTNAME}/assets/1.png`,
             data: {
                 feedback: {}
             }
@@ -53,7 +53,7 @@ export default class AdaptiveCardSvc {
             type: "Action.Execute",
             title: " ",
             verb: "vote_2",
-            iconUrl: "https://mmodocumentapproval.azurewebsites.net/assets/icon.png",
+            iconUrl: `https://${process.env.PUBLIC_HOSTNAME}/assets/2.png`,
             data: {
                 feedback: {}
             }
@@ -62,7 +62,7 @@ export default class AdaptiveCardSvc {
             type: "Action.Execute",
             title: " ",
             verb: "vote_3",
-            iconUrl: "https://mmodocumentapproval.azurewebsites.net/assets/icon.png",
+            iconUrl: `https://${process.env.PUBLIC_HOSTNAME}/assets/3.png`,
             data: {
                 feedback: {}
             }
@@ -71,7 +71,7 @@ export default class AdaptiveCardSvc {
             type: "Action.Execute",
             title: " ",
             verb: "vote_4",
-            iconUrl: "https://mmodocumentapproval.azurewebsites.net/assets/icon.png",
+            iconUrl: `https://${process.env.PUBLIC_HOSTNAME}/assets/4.png`,
             data: {
                 feedback: {}
             }
@@ -80,7 +80,7 @@ export default class AdaptiveCardSvc {
             type: "Action.Execute",
             title: " ",
             verb: "vote_5",
-            iconUrl: "https://mmodocumentapproval.azurewebsites.net/assets/icon.png",
+            iconUrl: `https://${process.env.PUBLIC_HOSTNAME}/assets/5.png`,
             data: {
                 feedback: {}
             }
