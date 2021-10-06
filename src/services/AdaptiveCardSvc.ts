@@ -1,9 +1,10 @@
 import { Feedback } from "../models/Feedback";
+import * as ACData from "adaptivecards-templating";
 
 export default class AdaptiveCardSvc { 
     private static initialFeedback: Feedback = {
         meetingID: "",
-        votedPersons: [],
+        votedPersons: ["00000000-0000-0000-0000-000000000000"],
         votes1: 0,
         votes2: 0,
         votes3: 0,
@@ -11,7 +12,7 @@ export default class AdaptiveCardSvc {
         votes5: 0
     };
 
-    private static basicCard = {
+    private static requestCard = {
         type: "AdaptiveCard",
         schema: "http://adaptivecards.io/schemas/adaptive-card.json",
         version: "1.4",
@@ -21,10 +22,10 @@ export default class AdaptiveCardSvc {
                 title: "Refresh",
                 verb: "alreadyVoted",
                 data: {
-                      feedback: {}
+                      feedback: "${feedback}"
                 }
             },
-            userIds: ["00000000-0000-0000-0000-000000000000"]
+            userIds: "${feedback.votedPersons}"
         },
         body: [
             {
@@ -34,192 +35,183 @@ export default class AdaptiveCardSvc {
             },
             {
                 type: "ActionSet",
-                actions: []
+                actions: [
+                    {
+                        type: "Action.Execute",
+                        title: " ",
+                        verb: "vote_1",
+                        iconUrl: `https://${process.env.PUBLIC_HOSTNAME}/assets/1.png`,
+                        data: {
+                            feedback: "${feedback}"
+                        }
+                    },
+                    {
+                        type: "Action.Execute",
+                        title: " ",
+                        verb: "vote_2",
+                        iconUrl: `https://${process.env.PUBLIC_HOSTNAME}/assets/2.png`,
+                        data: {
+                            feedback: "${feedback}"
+                        }
+                    },
+                    {
+                        type: "Action.Execute",
+                        title: " ",
+                        verb: "vote_3",
+                        iconUrl: `https://${process.env.PUBLIC_HOSTNAME}/assets/3.png`,
+                        data: {
+                            feedback: "${feedback}"
+                        }
+                    },
+                    {
+                        type: "Action.Execute",
+                        title: " ",
+                        verb: "vote_4",
+                        iconUrl: `https://${process.env.PUBLIC_HOSTNAME}/assets/4.png`,
+                        data: {
+                            feedback: "${feedback}"
+                        }
+                    },
+                    {
+                        type: "Action.Execute",
+                        title: " ",
+                        verb: "vote_5",
+                        iconUrl: `https://${process.env.PUBLIC_HOSTNAME}/assets/5.png`,
+                        data: {
+                            feedback: "${feedback}"
+                        }
+                    }
+                ]
             }
         ]
     };
 
-    private static initialTextblock = {
-        type: "TextBlock",
-        text: "How did you like the meeting?",
-        wrap: true
-    };
-
-    private static votingActions = [
-        {
-            type: "Action.Execute",
-            title: " ",
-            verb: "vote_1",
-            iconUrl: `https://${process.env.PUBLIC_HOSTNAME}/assets/1.png`,
-            data: {
-                feedback: {}
-            }
-        },
-        {
-            type: "Action.Execute",
-            title: " ",
-            verb: "vote_2",
-            iconUrl: `https://${process.env.PUBLIC_HOSTNAME}/assets/2.png`,
-            data: {
-                feedback: {}
-            }
-        },
-        {
-            type: "Action.Execute",
-            title: " ",
-            verb: "vote_3",
-            iconUrl: `https://${process.env.PUBLIC_HOSTNAME}/assets/3.png`,
-            data: {
-                feedback: {}
-            }
-        },
-        {
-            type: "Action.Execute",
-            title: " ",
-            verb: "vote_4",
-            iconUrl: `https://${process.env.PUBLIC_HOSTNAME}/assets/4.png`,
-            data: {
-                feedback: {}
-            }
-        },
-        {
-            type: "Action.Execute",
-            title: " ",
-            verb: "vote_5",
-            iconUrl: `https://${process.env.PUBLIC_HOSTNAME}/assets/5.png`,
-            data: {
-                feedback: {}
-            }
-        }
-    ];
-
-    private static getResultVotes = (feedback:Feedback) => {
-        return { 
-                type: "ColumnSet",
-                columns: [
-                {
-                    type: "Column",
-                    width: "stretch",
-                    items: [
-                        {
-                            type: "Image",
-                            size: "Medium",
-                            url: `https://${process.env.PUBLIC_HOSTNAME}/assets/1.png`
-                        },
-                        {
-                            type: "TextBlock",
-                            text: feedback.votes1.toString(),
-                            wrap: true,
-                            horizontalAlignment: "Center"
-                        }
-                    ]
-                },
-                {
-                    type: "Column",
-                    width: "stretch",
-                    items: [
-                        {
-                            type: "Image",
-                            size: "Medium",
-                            url: `https://${process.env.PUBLIC_HOSTNAME}/assets/2.png`
-                        },
-                        {
-                            type: "TextBlock",
-                            text: feedback.votes2.toString(),
-                            wrap: true,
-                            horizontalAlignment: "Center"
-                        }
-                    ]
-                },
-                {
-                    type: "Column",
-                    width: "stretch",
-                    items: [
-                        {
-                            type: "Image",
-                            size: "Medium",
-                            url: `https://${process.env.PUBLIC_HOSTNAME}/assets/3.png`
-                        },
-                        {
-                            type: "TextBlock",
-                            text: feedback.votes3.toString(),
-                            wrap: true,
-                            horizontalAlignment: "Center"
-                        }
-                    ]
-                },
-                {
-                    type: "Column",
-                    width: "stretch",
-                    items: [
-                        {
-                            type: "Image",
-                            size: "Medium",
-                            url: `https://${process.env.PUBLIC_HOSTNAME}/assets/4.png`
-                        },
-                        {
-                            type: "TextBlock",
-                            text: feedback.votes4.toString(),
-                            wrap: true,
-                            horizontalAlignment: "Center"
-                        }
-                    ]
-                },
-                {
-                    type: "Column",
-                    width: "stretch",
-                    items: [
-                        {
-                            type: "Image",
-                            size: "Medium",
-                            url: `https://${process.env.PUBLIC_HOSTNAME}/assets/5.png`
-                        },
-                        {
-                            type: "TextBlock",
-                            text: feedback.votes5.toString(),
-                            wrap: true,
-                            horizontalAlignment: "Center"
-                        }
-                    ]
+    private static resultCard = {
+        type: "AdaptiveCard",
+        schema: "http://adaptivecards.io/schemas/adaptive-card.json",
+        version: "1.4",
+        refresh: {
+            action: {
+                type: "Action.Execute",
+                title: "Refresh",
+                verb: "alreadyVoted",
+                data: {
+                      feedback: "${feedback}"
                 }
-            ]
-        }
-    };  
+            },
+            userIds: "${feedback.votedPersons}"
+        },
+        body: [
+                { 
+                    type: "ColumnSet",
+                    columns: [
+                    {
+                        type: "Column",
+                        width: "stretch",
+                        items: [
+                            {
+                                type: "Image",
+                                size: "Medium",
+                                url: `https://${process.env.PUBLIC_HOSTNAME}/assets/1.png`
+                            },
+                            {
+                                type: "TextBlock",
+                                text: "${feedback.votes1}",
+                                wrap: true,
+                                horizontalAlignment: "Center"
+                            }
+                        ]
+                    },
+                    {
+                        type: "Column",
+                        width: "stretch",
+                        items: [
+                            {
+                                type: "Image",
+                                size: "Medium",
+                                url: `https://${process.env.PUBLIC_HOSTNAME}/assets/2.png`
+                            },
+                            {
+                                type: "TextBlock",
+                                text: "${feedback.votes2}",
+                                wrap: true,
+                                horizontalAlignment: "Center"
+                            }
+                        ]
+                    },
+                    {
+                        type: "Column",
+                        width: "stretch",
+                        items: [
+                            {
+                                type: "Image",
+                                size: "Medium",
+                                url: `https://${process.env.PUBLIC_HOSTNAME}/assets/3.png`
+                            },
+                            {
+                                type: "TextBlock",
+                                text: "${feedback.votes3}",
+                                wrap: true,
+                                horizontalAlignment: "Center"
+                            }
+                        ]
+                    },
+                    {
+                        type: "Column",
+                        width: "stretch",
+                        items: [
+                            {
+                                type: "Image",
+                                size: "Medium",
+                                url: `https://${process.env.PUBLIC_HOSTNAME}/assets/4.png`
+                            },
+                            {
+                                type: "TextBlock",
+                                text: "${feedback.votes4}",
+                                wrap: true,
+                                horizontalAlignment: "Center"
+                            }
+                        ]
+                    },
+                    {
+                        type: "Column",
+                        width: "stretch",
+                        items: [
+                            {
+                                type: "Image",
+                                size: "Medium",
+                                url: `https://${process.env.PUBLIC_HOSTNAME}/assets/5.png`
+                            },
+                            {
+                                type: "TextBlock",
+                                text: "${feedback.votes5}",
+                                wrap: true,
+                                horizontalAlignment: "Center"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    };
 
     public static getInitialCard(meetingID: string) {
         let initialFeedback = this.initialFeedback;
         initialFeedback.meetingID = meetingID;
-        const card: any = this.basicCard;
-        card.body[0] = this.initialTextblock;
-        card.body[1].actions = this.votingActions;
-        card.body[1].actions[0].data.feedback = initialFeedback;
-        card.body[1].actions[1].data.feedback = initialFeedback;
-        card.body[1].actions[2].data.feedback = initialFeedback;
-        card.body[1].actions[3].data.feedback = initialFeedback;
-        card.body[1].actions[4].data.feedback = initialFeedback;
-        card.refresh.action.data.feedback = initialFeedback;
+        var template = new ACData.Template(this.requestCard);
+        var card = template.expand({ $root: { "feedback": initialFeedback }});
         return card;
     }
 
     public static getCurrentCard(feedback: Feedback) {
-        const card: any = this.basicCard;
-        card.body[0] = this.initialTextblock;
-        card.body[1].actions = this.votingActions;
-        card.body[1].actions[0].data.feedback = feedback;
-        card.body[1].actions[1].data.feedback = feedback;
-        card.body[1].actions[2].data.feedback = feedback;
-        card.body[1].actions[3].data.feedback = feedback;
-        card.body[1].actions[4].data.feedback = feedback;
-        card.refresh.action.data.feedback = feedback;
-        card.refresh.userIds = feedback.votedPersons;
+        var template = new ACData.Template(this.requestCard);
+        var card = template.expand({ $root: { "feedback": feedback }});
         return card;
     }
 
     public static getDisabledCard(feedback: Feedback) {
-        const card: any = this.basicCard;
-        card.body[1].actions = [];
-        card.body[0] = this.getResultVotes(feedback);
-        card.refresh.action.data.feedback = feedback;
+        var template = new ACData.Template(this.resultCard);
+        var card = template.expand({ $root: { "feedback": feedback }});
         return card;
     }
 }

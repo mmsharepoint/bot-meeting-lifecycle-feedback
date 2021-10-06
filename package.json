@@ -11,6 +11,8 @@
   "dependencies": {
     "@fluentui/react-northstar": "~0.56.0",
     "@microsoft/teams-js": "~1.10.0",
+    "adaptive-expressions": "^4.14.1",
+    "adaptivecards-templating": "^2.1.0",
     "axios": "^0.21.1",
     "botbuilder": "4.11.1",
     "botbuilder-dialogs": "4.11.1",
