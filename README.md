@@ -1,63 +1,96 @@
 # bot meeting lifecycle feedback - Microsoft Teams App
+Teams meeting bot app handling lifecycle events by requesting feedback from the user
 
-Generate a Microsoft Teams application.
+## Summary
+This sample is a Teams Bot meeting app created using the Teams Yeoman Generator. It acts on the real end date (not the scheduled ones) and posts an adaptive card requesting user feedback to the meeting's chat once each event is fired.
+Once voted each (already voted) user sees the overall feedback result from all participating users.
+App result:
 
-TODO: Add your documentation here
+![Feedback request](https://mmsharepoint.files.wordpress.com/2021/10/02adaptivecardrequestfeedback.png)
 
-## Getting started with Microsoft Teams Apps development
+![Feedback result](https://mmsharepoint.files.wordpress.com/2021/10/04adaptivecardresultfeedback_2.png)
 
-Head on over to [Microsoft Teams official documentation](https://developer.microsoft.com/en-us/microsoft-teams) to learn how to build Microsoft Teams Tabs or the [Microsoft Teams Yeoman generator docs](https://github.com/PnP/generator-teams/docs) for details on how this solution is set up.
+For further details see the author's [blog post](https://mmsharepoint.wordpress.com/)
 
-## Project setup
+## Prerequisites
 
-All required source code are located in the `./src` folder:
+* [Office 365 tenant](https://dev.office.com/sharepoint/docs/spfx/set-up-your-development-environment)
+* [Node.js](https://nodejs.org) version 10.14.1 or higher
+* [Gulp CLI](https://github.com/gulpjs/gulp-cli) `npm install gulp-cli --global`
+* [ngrok](https://ngrok.com) or similar tunneling application is required for local testing
+* Enable Teams Developer Preview in your client via <You Account> | About | Developer Preview
 
-* `client` client side code
-* `server` server side code
-* `public` static files for the web site
-* `manifest` for the Microsoft Teams app manifest
+    ```bash
+    # determine node version
+    node --version
+    ```
+## Version history
 
-For further details see the [Yo Teams documentation](https://github.com/PnP/generator-teams/docs)
+Version|Date|Author|Comments
+-------|----|----|--------
+1.0|Oct 07, 2021|[Markus Moeller](https://twitter.com/moeller2_0)|Initial release
 
-## Building the app
+## Disclaimer
 
-The application is built using the `build` Gulp task.
+**THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.**
 
-``` bash
-npm i -g gulp-cli
-gulp build
-```
+## Minimal Path to Awesome
+- Clone the repository
+    ```bash
+    git clone https://github.com/mmsharepoint/bot-meeting-lifecycle-feedback
+    ```
 
-## Building the manifest
+- In a console, navigate to `/bot-meeting-lifecycle-feedback`
 
-To create the Microsoft Teams Apps manifest, run the `manifest` Gulp task. This will generate and validate the package and finally create the package (a zip file) in the `package` folder. The manifest will be validated against the schema and dynamically populated with values from the `.env` file.
+    ```bash
+    cd bot-meeting-lifecycle-feedback
+    ```
 
-``` bash
-gulp manifest
-```
+- Install modules
 
-## Deploying the manifest
+    ```bash
+    npm install
+    ```
 
-Using the `yoteams-deploy` plugin, automatically added to the project, deployment of the manifest to the Teams App store can be done manually using `gulp tenant:deploy` or by passing the `--publish` flag to any of the `serve` tasks.
+- Run ngrok and note down the given url
 
+    ```bash
+    gulp start-ngrok
+    ```
+- You will need to register a Bot Channel for this app by executing the following steps
+    - Go to our Azure portal and Bot Services and click "Create"
+    - Pick "Azure Bot"
+    - Once again click the "Create" button inside
+    - Choose a valid name, subscription and resource group
+    - Free pricing tier is sufficient in this experimental phase
+    - Either create a Microsoft App ID on your own or let the Bot create it for you
+    (In the latter case you will get a secret which will be stored in an own Azure Key Vault, pay attention to clean up if you do not use that)
+    - Having the bot created, open the resource and under "Channels" add a featured "Teams channel". 
+    - Furthermore under Configuration add the following messaging endpoint: https://xxxxx.ngrok.io/api/messages 
+    (Later the xxxxx will be exchanged by the real given random ngrok url received)
+    - On the "Configuration" tab click "Manage" beside the Microsoft App ID and generate a new secret and note this down
+    - Paste App ID and secret into you local .env file got from .env-sample
+    - For further explanation see [here](https://mmsharepoint.wordpress.com/2021/09/21/microsoft-teams-meeting-apps-lifecycle-basics/#botchannel)
+- Enable Teams Developer Preview in your client via <Your Account> | About | Developer Preview
+- Package the app
+    ```bash
+    gulp manifest
+    ```
+- Start the app
+    ```bash
+    gulp serve --debug
+    ```
+- Create a new teams meeting with at least one participant
+- Open the meeting in Edit mode
+- At the right end of the tabs click (+) to add a new app and sideload your package
+- Join the meeting and after a while leave the meeting
 
-## Configuration
+## Features
 
-Configuration is stored in the `.env` file.
-
-## Debug and test locally
-
-To debug and test the solution locally you use the `serve` Gulp task. This will first build the app and then start a local web server on port 3007, where you can test your Tabs, Bots or other extensions. Also this command will rebuild the App if you change any file in the `/src` directory.
-
-``` bash
-gulp serve
-```
-
-To debug the code you can append the argument `debug` to the `serve` command as follows. This allows you to step through your code using your preferred code editor.
-
-``` bash
-gulp serve --debug
-```
+This is a Teams meeting bot app handling lifecycle events by requesting feedback from the user:
+* Microsoft Teams Meeting Apps - Meeting leifecylc
+* Adaptive Cards Templating
+* Adaptive Cards Universal Action Model (UAM) to refresh cards and show user specific views
 
 ## Useful links
  * [Debugging with Visual Studio Code](https://github.com/pnp/generator-teams/blob/master/docs/docs/vscode.md)
