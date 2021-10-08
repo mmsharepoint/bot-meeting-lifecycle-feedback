@@ -12,7 +12,7 @@ App result:
 
 |Feedback given - Refreshed card shows result|
 :-------------------------:
-![Feedback given - Refresh card](https://mmsharepoint.files.wordpress.com/2021/10/07givefeedback.gif)
+![Feedback given - Refresh card](https://mmsharepoint.files.wordpress.com/2021/10/07givefeedback-1.gif)
 
 For further details see the author's [blog post](https://mmsharepoint.wordpress.com/)
 
