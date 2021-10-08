@@ -6,9 +6,13 @@ This sample is a Teams Bot meeting app created using the Teams Yeoman Generator.
 Once voted each (already voted) user sees the overall feedback result from all participating users.
 App result:
 
-![Feedback request](https://mmsharepoint.files.wordpress.com/2021/10/02adaptivecardrequestfeedback.png)
+|Meeting ended - Feedback request posted|
+:-------------------------:
+![Meeting ended - Feedback request](https://mmsharepoint.files.wordpress.com/2021/10/06meetingended_feedbackrequest.gif?w=358&zoom=2)
 
-![Feedback result](https://mmsharepoint.files.wordpress.com/2021/10/04adaptivecardresultfeedback_2.png)
+|Feedback given - Refreshed card shows result|
+:-------------------------:
+![Feedback given - Refresh card](https://mmsharepoint.files.wordpress.com/2021/10/07givefeedback.gif)
 
 For further details see the author's [blog post](https://mmsharepoint.wordpress.com/)
 
