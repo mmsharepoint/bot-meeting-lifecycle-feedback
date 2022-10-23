@@ -1,0 +1,73 @@
+{
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.9/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.9",
+  "id": "7d2eebc0-1a22-11ec-bb5a-4d1ddff3fc52",
+  "version": "0.0.1",
+  "packageName": "botmeetinglifecyclefeedback",
+  "developer": {
+    "name": "Markus Moeller",
+    "websiteUrl": "https://mmobotlifecyclefeedback.azurewebsites.net",
+    "privacyUrl": "https://mmobotlifecyclefeedback.azurewebsites.net/privacy.html",
+    "termsOfUseUrl": "https://mmobotlifecyclefeedback.azurewebsites.net/tou.html"
+  },
+  "name": {
+    "short": "Meeting Feedback",
+    "full": "Teams Meeting Feedback Bot"
+  },
+  "description": {
+    "short": "Meeting bot ro collect feedback.",
+    "full": "A Teams Meeting bot to collect feedback from participants at the end of a meeting."
+  },
+  "icons": {
+    "outline": "icon-outline.png",
+    "color": "icon-color.png"
+  },
+  "accentColor": "#D85028",
+  "configurableTabs": [],
+  "staticTabs": [],
+  "bots": [
+    {
+      "botId": "7eb39aad-102a-4338-8269-6e62080edcbb",
+      "needsChannelSelector": true,
+      "isNotificationOnly": false,
+      "scopes": [
+        "team",
+        "personal",
+        "groupchat"
+      ],
+      "commandLists": [
+        {
+          "scopes": [
+            "team",
+            "personal"
+          ],
+          "commands": [
+            {
+              "title": "Help",
+              "description": "Shows help information"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "connectors": [],
+  "composeExtensions": [],
+  "permissions": [
+    "identity",
+    "messageTeamMembers"
+  ],
+  "validDomains": [
+    "mmobotlifecyclefeedback.azurewebsites.net",
+    "token.botframework.com"
+  ],
+  "showLoadingIndicator": false,
+  "isFullScreen": false,
+  "webApplicationInfo": {
+    "id": "7eb39aad-102a-4338-8269-6e62080edcbb",
+    "resource": "https://RscPermission",
+    "applicationPermissions": [
+      "OnlineMeeting.ReadBasic.Chat"
+    ]
+  }
+}

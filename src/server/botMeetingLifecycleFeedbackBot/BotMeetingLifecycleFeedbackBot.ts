@@ -82,11 +82,14 @@ export class BotMeetingLifecycleFeedbackBot extends TeamsActivityHandler {
     };
 
     async onEventActivity(context) {
+        log("Event started");
         if (context.activity.type == 'event' && context.activity.name == "application/vnd.microsoft.meetingStart") {
             // Nothing to do here
+            log("Event: Meeting started");
         }
     
         if (context.activity.type == 'event' && context.activity.name == "application/vnd.microsoft.meetingEnd") {
+            log("Event: Meeting ended");
             var meetingObject = context.activity.value;
             const card = CardFactory.adaptiveCard(AdaptiveCardSvc.getInitialCard(meetingObject.Id));
             const message = MessageFactory.attachment(card);
