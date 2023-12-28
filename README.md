@@ -14,7 +14,7 @@ App result:
 :-------------------------:
 ![Feedback given - Refresh card](https://mmsharepoint.files.wordpress.com/2021/10/07givefeedback-1.gif)
 
-For further details see the author's [blog post](https://mmsharepoint.wordpress.com/)
+For further details see the author's [blog post]([https://mmsharepoint.wordpress.com/]([https://mmsharepoint.wordpress.com/?p=4317)](https://mmsharepoint.wordpress.com/2021/10/09/meeting-feedback-with-microsoft-teams-meeting-app/))
 
 ## Prerequisites
 
@@ -28,6 +28,11 @@ For further details see the author's [blog post](https://mmsharepoint.wordpress.
     # determine node version
     node --version
     ```
+## Applies to
+
+This sample was created with the [Yeoman Generator for Teams](https://github.com/pnp/generator-teams). Nearly the same sample was also realized with the [using the Teams Toolkit with Visual Studio 2022](https://learn.microsoft.com/en-us/microsoftteams/platform/toolkit/teams-toolkit-fundamentals?pivots=visual-studio&WT.mc_id=M365-MVP-5004617)
+
+
 ## Version history
 
 Version|Date|Author|Comments
