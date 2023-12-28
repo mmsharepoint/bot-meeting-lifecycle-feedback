@@ -14,7 +14,7 @@ App result:
 :-------------------------:
 ![Feedback given - Refresh card](https://mmsharepoint.files.wordpress.com/2021/10/07givefeedback-1.gif)
 
-For further details see the author's [blog post]([https://mmsharepoint.wordpress.com/]([https://mmsharepoint.wordpress.com/?p=4317)](https://mmsharepoint.wordpress.com/2021/10/09/meeting-feedback-with-microsoft-teams-meeting-app/))
+For further details see the author's [blog post](https://mmsharepoint.wordpress.com/2021/10/09/meeting-feedback-with-microsoft-teams-meeting-app/)
 
 ## Prerequisites
 
